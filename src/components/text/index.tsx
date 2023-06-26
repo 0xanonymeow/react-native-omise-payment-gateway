@@ -1,7 +1,9 @@
 import styled from '@emotion/native';
+import { TextStyle } from 'react-native';
 
-const Base = styled.Text`
+const Base = styled.Text<TextStyle>`
   font-family: FC-Subject-Rounded-Regular;
+  ${(props) => props.color && `color: ${String(props.color)}`}
 `;
 
 export const Heading = styled(Base)`

@@ -1,4 +1,5 @@
 import styled from '@emotion/native';
+import { Button } from 'components/button';
 import { Container } from 'components/container';
 import { TextInput } from 'components/input';
 import { useRef } from 'react';
@@ -17,10 +18,15 @@ import {
   VisaH16,
 } from '../../../assets/icons';
 
-const Group = styled.View`
+const Content = styled.View`
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+`;
+
+const TextGroup = styled.View`
   gap: 24px;
   flex: 1;
-  // justify-content: space-around;
 `;
 
 const Row = styled.View<ViewStyle>`
@@ -53,49 +59,52 @@ export const Card = () => {
       style={{ flex: 1 }}
       keyboardVerticalOffset={100}
     >
-      <Container>
-        <Group>
-          <TextInput
-            ref={numberRef}
-            label="ATM/Debit/Credit card number"
-            placeholder="0000 0000 0000 0000"
-            returnKeyType="next"
-            onSubmitEditing={() => nameRef.current?.focus()}
-            RightIcons={CardNumberRightIcons()}
-          />
-          <TextInput
-            ref={nameRef}
-            label="Name on Card"
-            placeholder="John Doe"
-            returnKeyType="next"
-            onSubmitEditing={() => expRef.current?.focus()}
-          />
-          <Row gap={18}>
+      <Container contentContainerStyle={{ flexGrow: 1 }}>
+        <Content>
+          <TextGroup>
             <TextInput
-              ref={expRef}
-              label="Expiry Date"
-              placeholder="MM/YY"
+              ref={numberRef}
+              label="ATM/Debit/Credit card number"
+              placeholder="0000 0000 0000 0000"
               returnKeyType="next"
-              onSubmitEditing={() => cvvRef.current?.focus()}
-              containerProps={{
-                width: '47.5%',
-              }}
+              onSubmitEditing={() => nameRef.current?.focus()}
+              RightIcons={CardNumberRightIcons()}
             />
             <TextInput
-              ref={cvvRef}
-              label="CVV"
-              returnKeyType="send"
-              containerProps={{
-                width: '47.5%',
-              }}
+              ref={nameRef}
+              label="Name on Card"
+              placeholder="John Doe"
+              returnKeyType="next"
+              onSubmitEditing={() => expRef.current?.focus()}
             />
-          </Row>
-          <Row gap={20} width="50%" alignSelf="center" marginTop={40}>
-            <VerifiedByVisa />
-            <MastercardSecurecode />
-            <Omise />
-          </Row>
-        </Group>
+            <Row gap={18}>
+              <TextInput
+                ref={expRef}
+                label="Expiry Date"
+                placeholder="MM/YY"
+                returnKeyType="next"
+                onSubmitEditing={() => cvvRef.current?.focus()}
+                containerProps={{
+                  width: '47.5%',
+                }}
+              />
+              <TextInput
+                ref={cvvRef}
+                label="CVV"
+                returnKeyType="send"
+                containerProps={{
+                  width: '47.5%',
+                }}
+              />
+            </Row>
+            <Row gap={20} width="50%" alignSelf="center" marginTop={40}>
+              <VerifiedByVisa />
+              <MastercardSecurecode />
+              <Omise />
+            </Row>
+          </TextGroup>
+          <Button title="Add Card" />
+        </Content>
       </Container>
     </KeyboardAvoidingView>
   );
