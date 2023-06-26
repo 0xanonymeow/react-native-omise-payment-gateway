@@ -20,3 +20,14 @@ export const Paragraph = styled(Base)`
   font-family: FC-Subject-Rounded-Regular;
   font-size: 15px;
 `;
+
+export const Body = styled(Base)`
+  font-family: FC-Subject-Rounded-Regular;
+  font-size: 10px;
+`;
+
+export const Dot = styled(Base)`
+  font-family: FC-Subject-Rounded-Bold;
+  font-size: 32px;
+  line-height: 40px;
+`;

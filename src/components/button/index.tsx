@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import { Heading } from 'components/text';
-import { Dimensions } from 'react-native';
+import { ButtonProps, Dimensions } from 'react-native';
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -16,9 +16,12 @@ const StyledButton = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const Button = ({ title }: { title: string }) => {
+export const Button = ({
+  title,
+  ...props
+}: { title: string } & ButtonProps) => {
   return (
-    <StyledButton>
+    <StyledButton {...props}>
       <Heading color="white">{title}</Heading>
     </StyledButton>
   );

@@ -1,6 +1,6 @@
 import styled from '@emotion/native';
 import { Paragraph } from 'components/text';
-import { ReactNode, forwardRef, useState } from 'react';
+import { Dispatch, ReactNode, SetStateAction, forwardRef } from 'react';
 import {
   TextInput as DefaultTextInput,
   TextInputProps as DefaultTextInputProps,
@@ -31,6 +31,8 @@ const Row = styled.View<{ gap?: number }>`
 `;
 
 interface TextInputProps extends DefaultTextInputProps {
+  value: string;
+  setValue: Dispatch<SetStateAction<any>>;
   label: string;
   RightIcons?: ReactNode;
   pattern?: [RegExp, string];
@@ -39,11 +41,18 @@ interface TextInputProps extends DefaultTextInputProps {
 
 export const TextInput = forwardRef<DefaultTextInput, TextInputProps>(
   (
-    { label, RightIcons, placeholder, containerProps, pattern, ...props },
+    {
+      value,
+      setValue,
+      label,
+      RightIcons,
+      placeholder,
+      containerProps,
+      pattern,
+      ...props
+    },
     ref,
   ) => {
-    const [value, setValue] = useState('');
-
     const onChangeText = (value: string) => {
       if (pattern) return setValue(value.replace(...pattern));
       setValue(value);

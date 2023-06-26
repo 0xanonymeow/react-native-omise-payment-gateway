@@ -28,11 +28,11 @@ export const HeaderLeft = () => {
 export const HeaderRight = () => {
   const { name } = useRoute();
   const { navigate } = useNavigation<NavigationProps>();
-  const onAdd = () => navigate(ROUTES.CARD);
+  const onAdd = () => navigate(ROUTES.ADD_CARD);
 
   return (
     <IconContainer onPress={onAdd} align="flex-end">
-      {name === ROUTES.CARD ? <View /> : <Plus />}
+      {name === ROUTES.ADD_CARD ? <View /> : <Plus />}
     </IconContainer>
   );
 };
