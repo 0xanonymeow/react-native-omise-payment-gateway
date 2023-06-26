@@ -1,14 +1,17 @@
 import styled from '@emotion/native';
+import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/button';
 import { Container } from 'components/container';
 import { TextInput } from 'components/input';
-import { useRef } from 'react';
+import { NavigationProps } from 'constants/navigation';
+import { useRef, useState } from 'react';
 import {
   TextInput as DefaultTextInput,
   KeyboardAvoidingView,
   Platform,
   ViewStyle,
 } from 'react-native';
+import { useCardStore } from 'store/useCardStore';
 import {
   JCB,
   Mastercard,
@@ -47,11 +50,35 @@ const CardNumberRightIcons = () => (
   </>
 );
 
-export const Card = () => {
+export const AddCard = () => {
+  const [card, setCard] = useState<{
+    number: string;
+    name: string;
+    exp: string;
+    cvv?: string;
+  }>({
+    number: '',
+    name: '',
+    exp: '',
+    cvv: '',
+  });
   const numberRef = useRef<DefaultTextInput>(null);
   const nameRef = useRef<DefaultTextInput>(null);
   const expRef = useRef<DefaultTextInput>(null);
   const cvvRef = useRef<DefaultTextInput>(null);
+  const { goBack } = useNavigation<NavigationProps>();
+
+  const addCard = useCardStore((state) => state.addCard);
+
+  const onAddCard = () => {
+    const { number, name, exp } = card;
+    addCard({
+      number: number.replace(/\s/g, ''),
+      name,
+      exp: exp.replace(/\s/g, ''),
+    });
+    goBack();
+  };
 
   return (
     <KeyboardAvoidingView
@@ -66,6 +93,8 @@ export const Card = () => {
               ref={numberRef}
               label="ATM/Debit/Credit card number"
               placeholder="0000 0000 0000 0000"
+              value={card.number}
+              setValue={(value: string) => setCard({ ...card, number: value })}
               returnKeyType="next"
               onSubmitEditing={() => nameRef.current?.focus()}
               RightIcons={CardNumberRightIcons()}
@@ -77,6 +106,8 @@ export const Card = () => {
               ref={nameRef}
               label="Name on Card"
               placeholder="John Doe"
+              value={card.name}
+              setValue={(value: string) => setCard({ ...card, name: value })}
               returnKeyType="next"
               onSubmitEditing={() => expRef.current?.focus()}
               inputMode="text"
@@ -87,6 +118,8 @@ export const Card = () => {
                 ref={expRef}
                 label="Expiry Date"
                 placeholder="MM/YY"
+                value={card.exp}
+                setValue={(value: string) => setCard({ ...card, exp: value })}
                 returnKeyType="next"
                 onSubmitEditing={() => cvvRef.current?.focus()}
                 inputMode="numeric"
@@ -99,6 +132,8 @@ export const Card = () => {
               <TextInput
                 ref={cvvRef}
                 label="CVV"
+                value={card.cvv || ''}
+                setValue={(value: string) => setCard({ ...card, cvv: value })}
                 returnKeyType="send"
                 inputMode="numeric"
                 secureTextEntry
@@ -114,7 +149,7 @@ export const Card = () => {
               <Omise />
             </Row>
           </TextGroup>
-          <Button title="Add Card" />
+          <Button title="Add Card" onPress={onAddCard} />
         </Content>
       </Container>
     </KeyboardAvoidingView>

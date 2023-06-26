@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HeaderLeft, HeaderRight } from 'components/header';
 import { RootStackParamList } from 'constants/navigation';
-import { Card } from 'views/card';
+import { AddCard } from 'views/addCard';
 import { Main } from 'views/main';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,7 +28,11 @@ export const Navigation = () => {
           component={Main}
           options={{ title: 'Cards' }}
         />
-        <Stack.Screen name="Card" component={Card} options={{ title: '' }} />
+        <Stack.Screen
+          name="AddCard"
+          component={AddCard}
+          options={{ title: '' }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
