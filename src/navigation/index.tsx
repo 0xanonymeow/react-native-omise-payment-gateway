@@ -1,28 +1,34 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Header } from 'components/header';
+import { HeaderLeft, HeaderRight } from 'components/header';
+import { RootStackParamList } from 'constants/navigation';
 import { Card } from 'views/card';
 import { Main } from 'views/main';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export const Navigation = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
-          header: ({ options: { title } }) => <Header title={title} />,
+          headerLeft: HeaderLeft,
+          headerRight: HeaderRight,
+          headerShadowVisible: false,
+          headerTitleStyle: {
+            fontFamily: 'FC-Subject-Rounded-Bold',
+          },
           contentStyle: {
             backgroundColor: 'white',
           },
         }}
       >
         <Stack.Screen
-          name="main"
+          name="Main"
           component={Main}
           options={{ title: 'Cards' }}
         />
-        <Stack.Screen name="card" component={Card} />
+        <Stack.Screen name="Card" component={Card} options={{ title: '' }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

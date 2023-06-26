@@ -1,31 +1,37 @@
 import styled from '@emotion/native';
-import { useRoute } from '@react-navigation/native';
-import { Text } from 'components/themed/text';
-import { LeftArrow, Plus } from '../../../assets/icons';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { NavigationProps, ROUTES } from 'constants/navigation';
 import { View } from 'react-native';
+import { LeftArrow, Plus } from '../../../assets/icons';
 
-const Container = styled.View`
-  height: 40px;
-  padding-horizontal: 16px;
-  padding-vertical: 8px;
+const IconContainer = styled.TouchableOpacity`
+  width: 48px;
+  height: 48px;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
-const Title = styled(Text)`
-  font-family: FC-Subject-Rounded-Bold;
-`;
-
-export const Header = ({ title }: { title?: string }) => {
+export const HeaderLeft = () => {
   const { name } = useRoute();
+  const { goBack } = useNavigation<NavigationProps>();
+  const onBack = () => goBack();
 
   return (
-    <Container>
-      {name === 'main' ? <View /> : <LeftArrow />}
-      <Title>{title}</Title>
-      <Plus />
-    </Container>
+    <IconContainer onPress={onBack}>
+      {name === ROUTES.MAIN ? <View /> : <LeftArrow />}
+    </IconContainer>
+  );
+};
+
+export const HeaderRight = () => {
+  const { name } = useRoute();
+  const { navigate } = useNavigation<NavigationProps>();
+  const onAdd = () => navigate(ROUTES.CARD);
+
+  return (
+    <IconContainer onPress={onAdd}>
+      {name === ROUTES.CARD ? <View /> : <Plus />}
+    </IconContainer>
   );
 };

@@ -1,6 +1,8 @@
 import styled from '@emotion/native';
+import { useNavigation } from '@react-navigation/native';
 import { Container } from 'components/container';
 import { Text } from 'components/themed/text';
+import { NavigationProps, ROUTES } from 'constants/navigation';
 import { TouchableOpacity } from 'react-native';
 import { Card as CardIcon } from '../../../assets/icons';
 
@@ -16,6 +18,9 @@ const ButtonText = styled(Text)`
 `;
 
 const NoCards = () => {
+  const { navigate } = useNavigation<NavigationProps>();
+  const onAdd = () => navigate(ROUTES.CARD);
+
   return (
     <NoCardsContainer>
       <CardIcon width={40} height={40} />
@@ -23,7 +28,7 @@ const NoCards = () => {
       <Text style={{ textAlign: 'center' }}>
         We recommend adding a cardfor easy payment
       </Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={onAdd}>
         <ButtonText>Add New Card</ButtonText>
       </TouchableOpacity>
     </NoCardsContainer>
