@@ -8,7 +8,8 @@ const IconContainer = styled.TouchableOpacity`
   width: 48px;
   height: 48px;
   display: flex;
-  align-items: center;
+  align-items: ${({ align }: { align: 'flex-start' | 'flex-end' }) =>
+    align ? align : 'center'};
   justify-content: center;
 `;
 
@@ -18,7 +19,7 @@ export const HeaderLeft = () => {
   const onBack = () => goBack();
 
   return (
-    <IconContainer onPress={onBack}>
+    <IconContainer onPress={onBack} align="flex-start">
       {name === ROUTES.MAIN ? <View /> : <LeftArrow />}
     </IconContainer>
   );
@@ -30,7 +31,7 @@ export const HeaderRight = () => {
   const onAdd = () => navigate(ROUTES.CARD);
 
   return (
-    <IconContainer onPress={onAdd}>
+    <IconContainer onPress={onAdd} align="flex-end">
       {name === ROUTES.CARD ? <View /> : <Plus />}
     </IconContainer>
   );

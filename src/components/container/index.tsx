@@ -1,15 +1,21 @@
 import { ReactNode } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, ViewStyle } from 'react-native';
 
-export const Container = ({ children }: { children: ReactNode }) => (
+export const Container = ({
+  children,
+  contentContainerStyle,
+}: {
+  children: ReactNode;
+  contentContainerStyle?: ViewStyle;
+}) => (
   <ScrollView
     contentContainerStyle={{
       padding: 16,
-      flex: 1,
-      flexGrow: 1,
+      display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       backgroundColor: 'white',
+      ...contentContainerStyle,
     }}
   >
     {children}
