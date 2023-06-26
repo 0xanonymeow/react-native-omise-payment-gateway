@@ -33,13 +33,21 @@ const Row = styled.View<{ gap?: number }>`
 interface TextInputProps extends DefaultTextInputProps {
   label: string;
   RightIcons?: ReactNode;
+  pattern?: [RegExp, string];
   containerProps?: ViewStyle;
 }
 
 export const TextInput = forwardRef<DefaultTextInput, TextInputProps>(
-  ({ label, RightIcons, placeholder, containerProps, ...props }, ref) => {
+  (
+    { label, RightIcons, placeholder, containerProps, pattern, ...props },
+    ref,
+  ) => {
     const [value, setValue] = useState('');
-    const onChangeText = (value: string) => setValue(value);
+
+    const onChangeText = (value: string) => {
+      if (pattern) return setValue(value.replace(...pattern));
+      setValue(value);
+    };
 
     return (
       <TextInputContainer {...containerProps}>

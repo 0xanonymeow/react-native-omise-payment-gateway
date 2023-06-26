@@ -69,6 +69,9 @@ export const Card = () => {
               returnKeyType="next"
               onSubmitEditing={() => nameRef.current?.focus()}
               RightIcons={CardNumberRightIcons()}
+              inputMode="numeric"
+              maxLength={19}
+              pattern={[/(\d{4})(?=\d)/g, '$1 ']}
             />
             <TextInput
               ref={nameRef}
@@ -76,6 +79,8 @@ export const Card = () => {
               placeholder="John Doe"
               returnKeyType="next"
               onSubmitEditing={() => expRef.current?.focus()}
+              inputMode="text"
+              maxLength={64}
             />
             <Row gap={18}>
               <TextInput
@@ -84,6 +89,9 @@ export const Card = () => {
                 placeholder="MM/YY"
                 returnKeyType="next"
                 onSubmitEditing={() => cvvRef.current?.focus()}
+                inputMode="numeric"
+                maxLength={5}
+                pattern={[/(\d{2})(\d{2})/, '$1/$2']}
                 containerProps={{
                   width: '47.5%',
                 }}
@@ -92,6 +100,9 @@ export const Card = () => {
                 ref={cvvRef}
                 label="CVV"
                 returnKeyType="send"
+                inputMode="numeric"
+                secureTextEntry
+                maxLength={3}
                 containerProps={{
                   width: '47.5%',
                 }}
