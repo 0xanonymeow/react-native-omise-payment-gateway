@@ -30,7 +30,7 @@ export const useCardStore = create(
           const card = get().cards.find((c) => c.id === data.id);
           const cards = get().cards;
           if (!card) return { cards };
-          get().cards[data.id] = card;
+          get().cards[data.id] = data;
           return { cards };
         }),
       remove: (id) =>
