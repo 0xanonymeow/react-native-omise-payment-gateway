@@ -45,6 +45,26 @@ For more details on obtaining and using Omise keys, see https://www.omise.co/how
 
 <br />
 
+## Run on a simulator
+
+Run on an iOS simulator
+
+```
+npm run ios
+```
+
+<br />
+
+Run on an Android simulator
+
+```
+npm run android
+```
+
+<br />
+
+## Run on a device
+
 ### Download Expo Go
 
 Download the Expo Go app on your iOS or Android device. https://expo.dev/client
@@ -67,7 +87,7 @@ Open the Expo Go app on your device and scan the QR code in your terminal to ope
 
 Your app will reload if you save edits to your files, and you will see build errors and logs in the terminal.
 
-Sometimes you may need to rebuild or restart the development server to see changes in the app.
+> Sometimes you may need to rebuild or restart the development server to see changes in the app.
 
 <br />
 
