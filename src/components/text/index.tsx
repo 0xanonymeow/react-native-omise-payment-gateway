@@ -9,6 +9,7 @@ const Base = styled.Text<TextStyle>`
 export const Heading = styled(Base)`
   font-family: FC-Subject-Rounded-Bold;
   font-size: 18px;
+  line-height: 22px;
 `;
 
 export const Subheading = styled(Base)`
