@@ -1,19 +1,36 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
-interface Card {
+export interface CardProps {
+  id: number;
   number: string;
   name: string;
   exp: string;
 }
 
 interface CardState {
-  cards: Card[];
-  addCard: (card: Card) => void;
+  cards: CardProps[];
+  add: (card: Omit<CardProps, 'id'>) => void;
+  remove: (id: number) => void;
   removeAll: () => void;
 }
 
-export const useCardStore = create<CardState>((set) => ({
-  cards: [],
-  addCard: (card: Card) => set((state) => ({ cards: [...state.cards, card] })),
-  removeAll: () => set({ cards: [] }),
-}));
+export const useCardStore = create(
+  persist<CardState>(
+    (set, get) => ({
+      cards: [],
+      add: (card: Omit<CardProps, 'id'>) =>
+        set(() => ({
+          cards: [...get().cards, { ...card, id: get().cards.length }],
+        })),
+      remove: (id) =>
+        set(() => ({ cards: get().cards.filter((c) => c.id !== id) })),
+      removeAll: () => set({ cards: [] }),
+    }),
+    {
+      name: 'card-storage',
+      storage: createJSONStorage(() => AsyncStorage),
+    },
+  ),
+);
