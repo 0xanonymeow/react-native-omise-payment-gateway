@@ -1,7 +1,8 @@
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { Navigation } from 'navigation';
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Layout } from './Layout';
 
 const App = () => {
@@ -21,9 +22,11 @@ const App = () => {
   }
 
   return (
-    <Layout onLayout={onLayoutRootView}>
-      <Navigation />
-    </Layout>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <Layout onLayout={onLayoutRootView}>
+        <Navigation />
+      </Layout>
+    </GestureHandlerRootView>
   );
 };
 
