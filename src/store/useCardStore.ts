@@ -7,8 +7,6 @@ export interface CardProps {
   number: string;
   name: string;
   exp: string;
-  token?: string;
-  used?: boolean;
 }
 
 interface CardState {

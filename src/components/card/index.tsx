@@ -3,6 +3,7 @@ import { Gesture } from 'components/gesture';
 import { Body, Dot, Paragraph } from 'components/text';
 import { getVendor } from 'constants/cardVendor';
 import * as Haptics from 'expo-haptics';
+import { useOmise } from 'hooks/useOmise';
 import { useMemo } from 'react';
 import { Alert, View, ViewStyle } from 'react-native';
 import { CardProps, useCardStore } from 'store/useCardStore';
@@ -45,6 +46,7 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
   const vendor = useMemo(() => getVendor(number), [number]);
   const remove = useCardStore((state) => state.remove);
   const update = useCardStore((state) => state.update);
+  const { createToken, createCharge } = useOmise();
 
   const onRemove = (id: number) => remove(id);
 
@@ -65,8 +67,13 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
     );
   };
 
-  const onPress = () => {
-    return true;
+  const onPress = async () => {
+    const { id } = await createToken({
+      number,
+      name,
+      exp,
+    });
+    createCharge(id);
   };
 
   return (

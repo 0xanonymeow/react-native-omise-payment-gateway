@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "format": "prettier --write \"./**/*.{ts,tsx}\" \"src/**/*.{ts,tsx}\"",
     "lint": "eslint \"./**/*.{ts,tsx}\" \"src/**/*.{ts,tsx}\" --fix",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@backpackapp-io/react-native-toast": "^0.9.0",
@@ -25,6 +26,7 @@
     "expo-status-bar": "~1.4.4",
     "lodash": "^4.17.21",
     "omise-react-native": "github:tnylee/omise-react-native",
+    "patch-package": "^7.0.0",
     "react": "18.2.0",
     "react-native": "0.71.8",
     "react-native-gesture-handler": "~2.9.0",

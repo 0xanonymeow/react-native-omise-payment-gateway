@@ -1,3 +1,4 @@
+import { ToastPosition, toast } from '@backpackapp-io/react-native-toast';
 import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/button';
@@ -80,8 +81,19 @@ export const AddCard = () => {
       name,
       exp: exp.replace(/\s/g, ''),
     };
-    const { id, used } = await createToken(data);
-    addCard({ ...data, token: id, used });
+    const token = createToken(data);
+    await toast.promise(
+      token,
+      {
+        loading: 'Loading...',
+        success: () => 'Card has been added',
+        error: () => 'Unable to add card',
+      },
+      {
+        position: ToastPosition.TOP,
+      },
+    );
+    addCard({ ...data });
     goBack();
   };
 

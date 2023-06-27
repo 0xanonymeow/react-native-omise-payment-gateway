@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "react-native-omise-payment-gateway",
+    "name": "rn-omise",
     "slug": "react-native-omise-payment-gateway",
     "version": "1.0.0",
     "orientation": "portrait",

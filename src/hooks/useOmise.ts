@@ -15,28 +15,21 @@ export const useOmise = () => {
         expiration_year: Number(exp.split('/')[1]),
       },
     });
-    toast.promise(
-      data,
-      {
-        loading: 'Loading...',
-        success: () => 'Card has been added',
-        error: () => 'Unable to add card',
-      },
-      {
-        position: ToastPosition.TOP,
-      },
-    );
     return data;
   };
-  const createCharge = () => {
+  const createCharge = (token: string) => {
     const data = Omise.createCharge({
-      email: 'john.doe@example.com',
+      amount: Math.floor(Math.random() * 100000),
+      currency: 'thb',
+      card: token,
     });
     toast.promise(
       data,
       {
         loading: 'Loading...',
-        success: () => 'Card has been charged',
+        success: (data: Record<string, any>) => {
+          return `Card has been charged by ${data.amount / 100} THB`;
+        },
         error: () => 'Unable to charge the card',
       },
       {
