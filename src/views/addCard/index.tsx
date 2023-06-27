@@ -4,7 +4,7 @@ import { Button } from 'components/button';
 import { Container } from 'components/container';
 import { TextInput } from 'components/input';
 import { NavigationProps } from 'constants/navigation';
-import { useMemo, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import {
   TextInput as DefaultTextInput,
   KeyboardAvoidingView,
@@ -67,7 +67,6 @@ export const AddCard = () => {
   const expRef = useRef<DefaultTextInput>(null);
   const cvvRef = useRef<DefaultTextInput>(null);
   const { goBack } = useNavigation<NavigationProps>();
-  const disabled = useMemo(() => Object.values(card).some((c) => !c), [card]);
 
   const addCard = useCardStore((state) => state.add);
 
@@ -150,7 +149,7 @@ export const AddCard = () => {
               <Omise />
             </Row>
           </TextGroup>
-          <Button title="Add Card" onPress={onAddCard} disabled={disabled} />
+          <Button title="Add Card" onPress={onAddCard} />
         </Content>
       </Container>
     </KeyboardAvoidingView>

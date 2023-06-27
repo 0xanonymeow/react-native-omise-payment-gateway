@@ -14,7 +14,6 @@ const StyledButton = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${(props) => props.disabled && 'opacity: 0.3'}
 `;
 
 export const Button = ({
