@@ -68,7 +68,7 @@ export const AddCard = () => {
   const cvvRef = useRef<DefaultTextInput>(null);
   const { goBack } = useNavigation<NavigationProps>();
 
-  const addCard = useCardStore((state) => state.addCard);
+  const addCard = useCardStore((state) => state.add);
 
   const onAddCard = () => {
     const { number, name, exp } = card;
