@@ -2,7 +2,7 @@ import styled from '@emotion/native';
 import { useNavigation } from '@react-navigation/native';
 import { Card } from 'components/card';
 import { Container } from 'components/container';
-import { Heading, Subheading } from 'components/text';
+import { Body, Heading, Subheading } from 'components/text';
 import { NavigationProps, ROUTES } from 'constants/navigation';
 import { map } from 'lodash';
 import { TouchableOpacity } from 'react-native';
@@ -25,6 +25,11 @@ const CardsContainer = styled.View`
   align-items: center;
   justify-content: flex-start;
   gap: 32px;
+`;
+
+const InfoContainer = styled.View`
+  position: absolute;
+  bottom: 1px;
 `;
 
 const NoCards = () => {
@@ -51,15 +56,20 @@ export const Main = () => {
   return (
     <Container
       contentContainerStyle={{
-        flex: cards.length ? 0 : 1,
+        flex: 1,
       }}
     >
       {cards.length ? (
-        <CardsContainer>
-          {map(cards, (card) => (
-            <Card key={card.number} {...card} />
-          ))}
-        </CardsContainer>
+        <>
+          <CardsContainer>
+            {map(cards, (card) => (
+              <Card key={card.id} {...card} />
+            ))}
+          </CardsContainer>
+          <InfoContainer>
+            <Body color="grey">Press and Hold on the item to remove</Body>
+          </InfoContainer>
+        </>
       ) : (
         <NoCards />
       )}
