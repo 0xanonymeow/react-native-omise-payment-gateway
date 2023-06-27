@@ -1,4 +1,4 @@
-import { ToastPosition, toast } from '@backpackapp-io/react-native-toast';
+import { toast } from '@backpackapp-io/react-native-toast';
 import { OMISE_PUBLIC_KEY, OMISE_SECRET_KEY } from '@env';
 import Omise from 'omise-react-native';
 import { CardProps } from 'store/useCardStore';
@@ -28,12 +28,14 @@ export const useOmise = () => {
       {
         loading: 'Loading...',
         success: (data: Record<string, any>) => {
-          return `Card has been charged by ${data.amount / 100} THB`;
+          return `Card ending with ${
+            data.card.last_digits
+          } has been charged by ${data.amount / 100} THB`;
         },
         error: () => 'Unable to charge the card',
       },
       {
-        position: ToastPosition.TOP,
+        height: 80,
       },
     );
     return data;

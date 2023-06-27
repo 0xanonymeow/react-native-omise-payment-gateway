@@ -84,17 +84,11 @@ export const AddCard = () => {
       exp,
     };
     const token = createToken(data);
-    await toast.promise(
-      token,
-      {
-        loading: 'Loading...',
-        success: () => 'Card has been added',
-        error: () => 'Unable to add card',
-      },
-      {
-        position: ToastPosition.TOP,
-      },
-    );
+    await toast.promise(token, {
+      loading: 'Loading...',
+      success: () => 'Card has been added',
+      error: () => 'Unable to add card',
+    });
     addCard({ ...data });
     goBack();
   };

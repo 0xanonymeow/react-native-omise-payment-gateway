@@ -1,0 +1,13 @@
+diff --git a/node_modules/@backpackapp-io/react-native-toast/src/components/Toast.tsx b/node_modules/@backpackapp-io/react-native-toast/src/components/Toast.tsx
+index 1181d18..9b6e9aa 100644
+--- a/node_modules/@backpackapp-io/react-native-toast/src/components/Toast.tsx
++++ b/node_modules/@backpackapp-io/react-native-toast/src/components/Toast.tsx
+@@ -278,7 +278,7 @@ export const Toast: FC<Props> = ({
+               toast.icon
+             )}
+             <Text
+-              numberOfLines={1}
++              numberOfLines={2}
+               style={[
+                 {
+                   color: isDarkMode ? colors.textLight : colors.textDark,
