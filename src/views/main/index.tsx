@@ -56,9 +56,7 @@ export const Main = () => {
   return (
     <Container
       contentContainerStyle={{
-        display: 'flex',
-        minHeight: cards.length ? '100%' : '85%',
-        height: 'auto',
+        flex: cards.length > 3 ? 0 : 1,
       }}
     >
       {cards.length ? (

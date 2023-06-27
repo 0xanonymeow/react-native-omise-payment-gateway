@@ -1,5 +1,6 @@
 import { ToastPosition, toast } from '@backpackapp-io/react-native-toast';
 import styled from '@emotion/native';
+import { useHeaderHeight } from '@react-navigation/elements';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from 'components/button';
 import { Container } from 'components/container';
@@ -71,6 +72,7 @@ export const AddCard = () => {
   const { goBack } = useNavigation<NavigationProps>();
   const disabled = useMemo(() => Object.values(card).some((c) => !c), [card]);
   const { createToken } = useOmise();
+  const headerHeight = useHeaderHeight();
 
   const addCard = useCardStore((state) => state.add);
 
@@ -99,9 +101,9 @@ export const AddCard = () => {
 
   return (
     <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
       style={{ flex: 1 }}
-      keyboardVerticalOffset={100}
+      keyboardVerticalOffset={headerHeight}
     >
       <Container contentContainerStyle={{ flexGrow: 1 }}>
         <Content>

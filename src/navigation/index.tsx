@@ -18,6 +18,7 @@ export const Navigation = () => {
           headerTitleStyle: {
             fontFamily: 'FC-Subject-Rounded-Bold',
           },
+          headerTitleAlign: 'center',
           contentStyle: {
             backgroundColor: 'white',
           },

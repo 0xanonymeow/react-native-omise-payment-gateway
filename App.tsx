@@ -1,6 +1,7 @@
 import { Toasts } from '@backpackapp-io/react-native-toast';
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
 import { useOmise } from 'hooks/useOmise';
 import { Navigation } from 'navigation';
 import React, { useCallback, useEffect } from 'react';
@@ -37,6 +38,7 @@ const App = () => {
       <Layout onLayout={onLayoutRootView}>
         <Navigation />
         <Toasts />
+        <StatusBar style="dark" />
       </Layout>
     </GestureHandlerRootView>
   );
