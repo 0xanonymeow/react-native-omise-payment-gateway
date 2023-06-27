@@ -6,7 +6,7 @@ This React Native app demonstrates how to integrate with the Omise payment gatew
 
 <p align="center">
   <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/131508930/249190458-92e05c31-b704-4a9b-a032-2f7a9958afa1.PNG" width="25%" height="25%" />
-  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/131508930/249231612-148b5a48-4433-4171-a8e5-5904bde38dac.png" width="26.3% height="26.3%" />
+  <img src="https://github-production-user-asset-6210df.s3.amazonaws.com/131508930/249239376-620da21c-b629-4314-94ec-ff0a853f4955.png" width="26.3% height="26.3%" />
 </p>
 
 <br />
