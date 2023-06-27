@@ -79,9 +79,9 @@ export const AddCard = () => {
   const onAddCard = async () => {
     const { number, name, exp } = card;
     const data = {
-      number: number.replace(/\s/g, ''),
+      number: number.replace(/\D/g, ''),
       name,
-      exp: exp.replace(/\s/g, ''),
+      exp,
     };
     const token = createToken(data);
     await toast.promise(
