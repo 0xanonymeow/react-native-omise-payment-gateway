@@ -28,7 +28,7 @@ const CardsContainer = styled.View`
 `;
 
 const InfoContainer = styled.View`
-  position: absolute;
+  margin-top: 8px;
   bottom: 1px;
 `;
 
