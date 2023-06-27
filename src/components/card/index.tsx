@@ -5,9 +5,9 @@ import { getVendor } from 'constants/cardVendor';
 import * as Haptics from 'expo-haptics';
 import { useOmise } from 'hooks/useOmise';
 import { useMemo } from 'react';
-import { Alert, View, ViewStyle } from 'react-native';
+import { Alert, Image, View, ViewStyle } from 'react-native';
 import { CardProps, useCardStore } from 'store/useCardStore';
-import { JCB, Mastercard, VisaH16 } from '../../../assets/icons';
+import { JCB, Mastercard, ThinkingFace, VisaH16 } from '../../../assets/icons';
 
 const Container = styled.Pressable<ViewStyle>`
   border-radius: 12px;
@@ -89,7 +89,18 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
           },
         }}
       >
-        {vendor && vendors[vendor]}
+        {vendor && vendors.hasOwnProperty(vendor) ? (
+          vendors[vendor]
+        ) : (
+          <Image
+            source={ThinkingFace}
+            style={{
+              width: 40,
+              height: 40,
+              resizeMode: 'contain',
+            }}
+          />
+        )}
         <CardNumberContainer>
           <Dot color="#8F8F8F">····</Dot>
           <Dot color="#8F8F8F">····</Dot>
