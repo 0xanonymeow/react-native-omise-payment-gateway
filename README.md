@@ -78,6 +78,17 @@ Sometimes you may need to rebuild or restart the development server to see chang
 You can add a credit card by specifying the card details. The information needs to be in the correct pattern.
 This app is connected to the Omise payment gateway in a testing environment. <ins><b>Do not specify real credit card data!</b></ins>
 
+<b>Example card data:</b>
+
+```
+Visa
+
+Card Number: 4249 2577 8082 2614
+Holder Name: John Doe
+Card Expiry: 11/2026
+CVV/CVV2: 731
+```
+
 <br />
 
 <p align="center">
