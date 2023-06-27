@@ -41,7 +41,7 @@ const NoCards = () => {
       <CardIcon width={40} height={40} />
       <Subheading>No Cards Found</Subheading>
       <Subheading style={{ textAlign: 'center' }}>
-        We recommend adding a cardfor easy payment
+        We recommend adding a card for easy payment
       </Subheading>
       <TouchableOpacity onPress={onAdd}>
         <ButtonText>Add New Card</ButtonText>
