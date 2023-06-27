@@ -4,6 +4,7 @@ import { Button } from 'components/button';
 import { Container } from 'components/container';
 import { TextInput } from 'components/input';
 import { NavigationProps } from 'constants/navigation';
+import { useOmise } from 'hooks/useOmise';
 import { useMemo, useRef, useState } from 'react';
 import {
   TextInput as DefaultTextInput,
@@ -68,16 +69,19 @@ export const AddCard = () => {
   const cvvRef = useRef<DefaultTextInput>(null);
   const { goBack } = useNavigation<NavigationProps>();
   const disabled = useMemo(() => Object.values(card).some((c) => !c), [card]);
+  const { createToken } = useOmise();
 
   const addCard = useCardStore((state) => state.add);
 
-  const onAddCard = () => {
+  const onAddCard = async () => {
     const { number, name, exp } = card;
-    addCard({
+    const data = {
       number: number.replace(/\s/g, ''),
       name,
       exp: exp.replace(/\s/g, ''),
-    });
+    };
+    const { id, used } = await createToken(data);
+    addCard({ ...data, token: id, used });
     goBack();
   };
 

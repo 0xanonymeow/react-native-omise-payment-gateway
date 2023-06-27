@@ -1,10 +1,12 @@
 import styled from '@emotion/native';
-import { LongPressGesture } from 'components/longPressGesture';
+import { Gesture } from 'components/gesture';
 import { Body, Dot, Paragraph } from 'components/text';
+import { getVendor } from 'constants/cardVendor';
 import * as Haptics from 'expo-haptics';
+import { useMemo } from 'react';
 import { Alert, View, ViewStyle } from 'react-native';
 import { CardProps, useCardStore } from 'store/useCardStore';
-import { VisaH16 } from '../../../assets/icons';
+import { JCB, Mastercard, VisaH16 } from '../../../assets/icons';
 
 const Container = styled.Pressable<ViewStyle>`
   border-radius: 12px;
@@ -33,8 +35,16 @@ const CardNumberContainer = styled.View`
   gap: 12px;
 `;
 
+const vendors: Record<string, JSX.Element> = {
+  visa: <VisaH16 width={66} height={22} />,
+  mastercard: <Mastercard width={66} height={22} />,
+  jcb: <JCB width={66} height={22} />,
+};
+
 export const Card = ({ id, number, name, exp }: CardProps) => {
+  const vendor = useMemo(() => getVendor(number), [number]);
   const remove = useCardStore((state) => state.remove);
+  const update = useCardStore((state) => state.update);
 
   const onRemove = (id: number) => remove(id);
 
@@ -55,8 +65,12 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
     );
   };
 
+  const onPress = () => {
+    return true;
+  };
+
   return (
-    <LongPressGesture onLongPress={onLongPress}>
+    <Gesture onLongPress={onLongPress} onPress={onPress}>
       <Container
         onLongPress={() =>
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
@@ -68,7 +82,7 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
           },
         }}
       >
-        <VisaH16 />
+        {vendor && vendors[vendor]}
         <CardNumberContainer>
           <Dot color="#8F8F8F">····</Dot>
           <Dot color="#8F8F8F">····</Dot>
@@ -88,6 +102,6 @@ export const Card = ({ id, number, name, exp }: CardProps) => {
           </View>
         </Row>
       </Container>
-    </LongPressGesture>
+    </Gesture>
   );
 };
