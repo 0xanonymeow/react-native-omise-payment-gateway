@@ -1,6 +1,7 @@
 import styled from '@emotion/native';
 import { ReactNode } from 'react';
 import { ViewProps } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const SafeAreaView = styled.SafeAreaView`
   flex: 1;
@@ -12,5 +13,9 @@ export const Layout = ({
   children,
   ...props
 }: { children: ReactNode } & ViewProps) => {
-  return <SafeAreaView {...props}>{children}</SafeAreaView>;
+  return (
+    <SafeAreaProvider>
+      <SafeAreaView {...props}>{children}</SafeAreaView>
+    </SafeAreaProvider>
+  );
 };

@@ -7,11 +7,14 @@ export interface CardProps {
   number: string;
   name: string;
   exp: string;
+  token?: string;
+  used?: boolean;
 }
 
 interface CardState {
   cards: CardProps[];
   add: (card: Omit<CardProps, 'id'>) => void;
+  update: (card: CardProps) => void;
   remove: (id: number) => void;
   removeAll: () => void;
 }
@@ -24,6 +27,14 @@ export const useCardStore = create(
         set(() => ({
           cards: [...get().cards, { ...card, id: get().cards.length }],
         })),
+      update: (data: CardProps) =>
+        set(() => {
+          const card = get().cards.find((c) => c.id === data.id);
+          const cards = get().cards;
+          if (!card) return { cards };
+          get().cards[data.id] = card;
+          return { cards };
+        }),
       remove: (id) =>
         set(() => ({ cards: get().cards.filter((c) => c.id !== id) })),
       removeAll: () => set({ cards: [] }),
