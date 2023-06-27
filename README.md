@@ -2,7 +2,7 @@
 
 This React Native app demonstrates how to integrate with the Omise payment gateway.
 
-![main]( =50x50)
+![main](https://github.com/0xanonymeow/react-native-omise-payment-gateway/assets/131508930/92e05c31-b704-4a9b-a032-2f7a9958afa1 =50x50)
 
 ## Installation
 ### Install dependencies
@@ -45,7 +45,7 @@ Sometimes you may need to rebuild or restart the development server to see chang
 
 You can add a credit card by specifying the card details. The information needs to be in the correct pattern.
 
-![add-card]( =50x50) 
+![add-card](https://github.com/0xanonymeow/react-native-omise-payment-gateway/assets/131508930/72f03e10-0594-4416-8d0a-92718b8bed99 =50x50) 
 
 <br />
 
@@ -53,7 +53,7 @@ You can add a credit card by specifying the card details. The information needs 
 
 You can charge a card by tapping on the card added in the list.
 
-![charge-card]( =50x50) 
+![charge-card](https://github.com/0xanonymeow/react-native-omise-payment-gateway/assets/131508930/b1c6b34e-e4c2-4406-ad6b-e62dbab075f0 =50x50) 
 
 <br />
 
