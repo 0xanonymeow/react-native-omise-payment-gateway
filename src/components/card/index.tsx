@@ -1,7 +1,7 @@
 import styled from '@emotion/native';
 import { Gesture } from 'components/gesture';
 import { Body, Dot, Paragraph } from 'components/text';
-import { getVendor } from 'constants/cardVendor';
+import { getVendor } from 'utils/cardVendor';
 import * as Haptics from 'expo-haptics';
 import { useOmise } from 'hooks/useOmise';
 import { useMemo } from 'react';
