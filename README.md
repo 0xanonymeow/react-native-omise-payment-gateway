@@ -23,7 +23,7 @@ npm install
 ### Run `patch-package` to apply patches to `omise-react-native` SDK
 
 ```
-npm run patch-package  
+npx patch-package  
 ```
 
 <br />
